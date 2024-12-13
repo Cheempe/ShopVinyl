@@ -1,0 +1,53 @@
+﻿@using VinylShop.Web.Models.Orders
+@model OrderModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Order</h1>
+<p>Id - @Model.Id</p>
+<p>User - <a asp-action="UserProfile" asp-route-id="@Model.UserId">Open</a></p>
+<p>Timestamp - @Model.Timestamp</p>
+<p>Total price - @Model.TotalPrice</p>
+<p>Status - @Model.StatusString</p>
+
+<form method="post" asp-action="UpdateOrderStatus">
+    <input hidden name="orderId" value="@Model.Id"/>
+    <select name="status" asp-items="ViewBag.OrderStatuses" class="form-control"></select>
+    <button type="submit" class="btn btn-primary">Change status</button>
+</form>
+
+<h3>Products</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Custom cover</th>
+            <th>Unit price</th>
+            <th>Quantity</th>
+            <th>Total price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Product.Author</td>
+                <td>@item.Product.Year</td>
+                @if(item.CustomCover is not null){
+                    <td><a href="/image/custom/@item.Id?isOrder=true">Open</a></td>
+                }
+                else{
+                    <td>-</td>
+                }
+                <td>@item.Product.Price</td>
+                <td>@item.Quantity</td>
+                <td>@item.TotalPrice грн</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,98 @@
+﻿@using VinylShop.Web.Models.Cart
+@using VinylShop.Web.Models.Product
+@model List<LiteProductModel>
+@{
+    IEnumerable<Guid> cartItemsIds = (ViewBag.Cart as CartModel).Items.Select(i => i.Product).Select(p => p.Id);
+    ProductsViewSettings settings = ViewBag.PageSettings as ProductsViewSettings;
+}
+<div class="site-container">
+    <aside class="sidebar">
+        <form method="post" asp-action="Index">
+            <div class="filter-section">
+                <h3>Price</h3>
+                <div class="genre-filters">
+                    <label for="minPrice">min:</label>
+                    <input type="number" id="minPrice" value="@settings?.Filter.MinPrice" name="minPrice" min="0" />
+                    <br>
+                    <label for="maxPrice">max:</label>
+                    <input type="number" id="maxPrice" value="@settings?.Filter.MaxPrice" name="maxPrice" min="0" />
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Genre</h3>
+                <div class="genre-filters">
+                    @foreach (var genre in settings.Filter.SelectedGenres)
+                    {
+                        <div>
+                            <input class="form-check-input" type="checkbox" id="input_@genre"
+                                   name="selectedGenres" value="@genre.Key" @(genre.Value ? "checked" : "") />
+                            <label for="input_@genre">@genre.Key</label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Search</h3>
+                <input type="text" name="name" placeholder="Search by name" />
+            </div>
+            <div class="filter-clear">
+            <button type="submit" class="filter-button">Filter</button>
+            <a asp-action="Index" asp-route-clear="true">Clear</a>
+            </div>
+        </form>
+    </aside>
+
+    @if (Model.Count > 0)
+    {
+        <div style="display: flex; flex-direction: column; width: 100%;">
+            <div class="card-container">
+                @foreach (var current in Model)
+                {
+                    <div class="product-card">
+                        <a asp-action="Open" asp-route-id="@current.Id">
+                            <img class="product-image" src="/image/@current.Id" alt="Album cover" />
+                        </a>
+                        <div class="product-details">
+                            <div class="name-author">
+                                <p class="album-name">@current.Name</p>
+                                <p class="author-name">@current.Author</p>
+                            </div>
+                            <p class="price">$@current.Price</p>
+                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="product-cart-button" onclick="AddToCart('@current.Id')">
+
+                                @if (cartItemsIds.Contains(current.Id))
+                                {
+                                    <img id="product-cart-button-img-@current.Id" asp-append-version="true" src="/images/check.png" />
+                                    <p id="product-cart-button-text-@current.Id">In cart</p>
+                                }
+                                else
+                                {
+                                    <img id="product-cart-button-img-@current.Id" asp-append-version="true" src="/images/cart-icon.png" />
+                                    <p id="product-cart-button-text-@current.Id">Add to cart</p>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="product-cart-button" href="/identity/account/login?returnUrl=%2Fproducts">
+                                Sign in to add to cart
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+
+            <vc:pagination model="@settings.Pagination" />
+        </div>
+
+    }
+    else
+    {
+        <p class="no-items">No items available</p>
+    }
+</div>

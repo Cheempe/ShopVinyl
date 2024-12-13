@@ -1,0 +1,40 @@
+﻿@using VinylShop.Web.Models.Product
+@model List<LiteProductModel>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ProductsViewSettings settings = ViewBag.PageSettings as ProductsViewSettings;
+}
+
+<div class="admin-header">
+    <h1>Products</h1>
+    <div class="admin-header-actions">
+        <a asp-action="CreateProduct">Create</a>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Price</th>
+@*             <th>Actions</th> *@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Author</td>
+                <td>@item.Genre</td>
+                <td>@item.Price грн</td>
+@*                 <td>
+                    <a href="#">Delete</a>
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>
+<vc:pagination model="@settings.Pagination" />

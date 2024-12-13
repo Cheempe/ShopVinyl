@@ -1,0 +1,35 @@
+﻿@using VinylShop.Web.Data.Entities
+@model UserEntity
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>@Model.UserName</h1>
+<p>Id - @Model.Id</p>
+<p>Email - @Model.Email</p>
+<p>Phone - @Model.PhoneNumber</p>
+<p>Email confirmed - @Model.EmailConfirmed</p>
+
+<h3>Orders</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Timestamp</th>
+            <th>Total price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Orders)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Timestamp</td>
+                <td>@item.TotalPrice грн</td>
+                <td><a asp-action="OpenOrder" asp-route-id="@item.Id">Open</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

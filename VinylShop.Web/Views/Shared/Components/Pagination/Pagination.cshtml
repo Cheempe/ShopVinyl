@@ -1,0 +1,42 @@
+﻿@model PaginationInfo
+
+@if (Model.PagesCount > 1)
+{
+    string link = Context.Request.Path + "?page=";
+    int min = Math.Max(1, Model.CurrentPage - 3);
+    int max = Math.Min(Model.PagesCount, Model.CurrentPage + 3);
+
+    <div class="pagination-container">
+        <div class="pagination">
+            @if (min > 1)
+            {
+                string style = Model.CurrentPage == 1 ? "selected" : "";
+                string href = link + 1;
+                <a href="@href" class="pagination-button unselectable @style">1</a>
+                if (min > 2)
+                {
+                    <a class="pagination-button disabled unselectable">...</a>
+                }
+            }
+
+            @for (int i = min; i <= max; i++)
+            {
+                string style = Model.CurrentPage == i ? "selected" : "";
+                string href = link + i;
+                <a href="@href" class="pagination-button unselectable @style">@i</a>
+            }
+
+            @if (max < Model.PagesCount)
+            {
+                if (max < Model.PagesCount - 1)
+                {
+                    <a class="pagination-button disabled unselectable">...</a>
+                }
+                string style = Model.CurrentPage == Model.PagesCount ? "selected" : "";
+                string href = link + Model.PagesCount;
+                <a href="@href" class="pagination-button unselectable @style">@Model.PagesCount</a>
+            }
+        </div>
+    </div>
+}
+

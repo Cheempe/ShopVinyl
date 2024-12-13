@@ -1,0 +1,29 @@
+﻿@using VinylShop.Web.Data.Entities
+@model UserEntity
+
+<p style="font-size:72px">Your profile</p>
+<p style="font-size:24px">Email - @Model.Email</p>
+<p style="font-size:24px">Phone - @Model.PhoneNumber</p>
+
+<p style="padding-top:40px; font-size:72px">Orders</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Timestamp</th>
+            <th>Total price</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Orders)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Timestamp</td>
+                <td>@item.TotalPrice грн</td>
+                <td>@item.StatusString</td>
+            </tr>
+        }
+    </tbody>
+</table>

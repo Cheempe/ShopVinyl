@@ -1,0 +1,14 @@
+﻿@model List<UserModel>
+
+<b>All UserNames</b>
+@for (int i = 0 ; i < Model.Count; i++)
+{
+    UserModel current = Model.ElementAt(i);
+    <li>User number @(i+1)</li>
+    <li>Name = @current.Name</li>
+    <li>Email = @current.Email</li>
+    <li>Age = @current.Age</li>
+    <a asp-action="Delete" asp-route-id="@current.Id">Delete</a>
+    <p></p>
+}
+

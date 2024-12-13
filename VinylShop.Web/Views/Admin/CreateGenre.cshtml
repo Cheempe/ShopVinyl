@@ -1,0 +1,10 @@
+﻿@model CreateGenreModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<form method="post" asp-action="CreateGenrePost">
+    <input asp-for="@Model.Name" placeholder="name" />
+    <button type="submit">send</button>
+</form>

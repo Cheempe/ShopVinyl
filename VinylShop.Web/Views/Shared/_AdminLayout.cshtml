@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VinylShop.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/VinylShop.Web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navBar">
+            <div class="navLinks">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-area="" asp-controller="Admin" asp-action="Products">Products</a>
+                <a asp-area="" asp-controller="Admin" asp-action="Genres">Genres</a>
+                <a asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
+                <a asp-area="" asp-controller="Admin" asp-action="Orders">Orders</a>
+            </div>
+            <div class="accountCart">
+                <a href="/identity/account/manage">
+                    <img src="/images/user-icon.png" alt="User" class="icon">
+                </a>
+                <a href="/identity/account/logout">
+                    <img src="/images/login-logout-icon.png" alt="User" class="icon">
+                </a>
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="home-container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*     <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - VinylShop.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer> *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

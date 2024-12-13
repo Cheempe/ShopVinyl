@@ -1,0 +1,9 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=vinylsdb;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "MailSettings": {
+    "Host": "localhost",
+    "Port": 25
+  }
+}

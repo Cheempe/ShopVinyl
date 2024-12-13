@@ -1,0 +1,62 @@
+﻿@model VinylShop.Web.Models.UserModel
+
+@{
+    ViewData["Title"] = "Personal Account";
+}
+
+<div class="profile-page">
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="#">
+                    <img src="/images/user-icon.png" alt="User" class="icon"> My profile
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/images/orders-icon.png" alt="Orders" class="icon"> Orders
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/images/reviews-icon.png" alt="Reviews" class="icon"> Reviews
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/images/wishlist-icon.png" alt="Wishlist" class="icon"> Wishlist
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/images/payment-icon.png" alt="Payment" class="icon"> Payment
+                </a>
+            </li>
+            <li>
+                <a href="#" class="logout">
+                    <img src="/images/logout-icon.png" alt="Log out" class="icon"> Log out
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="profile-content">
+        <div class="profile-item">
+            <h3>Personal data</h3>
+            <p>@Model.Name</p>
+        </div>
+@*         <div class="profile-item">
+            <h3>Phone number</h3>
+            <p>@Model.Phone</p>
+        </div> *@
+        <div class="profile-item">
+            <h3>Email</h3>
+            <p>@Model.Email</p>
+        </div>
+        <div class="profile-item">
+            <h3>Age</h3>
+            <p>@Model.Age</p>
+        </div>
+    </div>
+</div>
+

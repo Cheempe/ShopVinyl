@@ -1,0 +1,16 @@
+﻿@using VinylShop.Web.Models.Orders
+@model List<OrderModel>
+
+
+@foreach(var order in Model)
+{
+    <p>Order id - @order.Id</p>
+    <ol>
+
+        @foreach(var productOrder in order.Products){
+            <li>
+                @productOrder.Product.Name
+            </li>
+        }
+    </ol>
+}

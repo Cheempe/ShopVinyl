@@ -1,0 +1,35 @@
+﻿@model VinylShop.Web.Models.UserModel
+
+<div class="content-wrapper">
+        <img src="/images/register_image.png" alt="Vinyl collection" class="image-section" />
+        <div class="form-section">
+            <h2>Register</h2>
+            <form asp-action="Register" method="post">
+                <div>
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div>
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div>
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" type="password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div>
+                    <label asp-for="Age"></label>
+                    <input asp-for="Age" />
+                    <span asp-validation-for="Age"></span>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <p>
+                Already registered?
+                <a asp-controller="Account" asp-action="Login">Sign in</a>
+            </p>
+        </div>
+</div>

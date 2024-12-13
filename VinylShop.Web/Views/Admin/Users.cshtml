@@ -1,0 +1,36 @@
+﻿@using VinylShop.Web.Data.Entities
+@model List<UserEntity>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    UsersViewSettings settings = ViewBag.PageSettings as UsersViewSettings;
+}
+<div class="admin-header">
+    <h1>Users</h1>
+    <div class="admin-header-actions">
+        
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Id</th>
+            <th>Email confirmed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Email</td>
+                <td>@item.Id</td>
+                <td>@item.EmailConfirmed</td>
+                <td>
+                    <a asp-action="UserProfile" asp-route-id="@item.Id">Open</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<vc:pagination model="@settings.Pagination" />

@@ -1,0 +1,27 @@
+﻿@model List<string>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin-header">
+    <h1>Genres</h1>
+    <div class="admin-header-actions">
+        <a asp-action="CreateGenre">Create</a>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item</td>
+            </tr>
+        }
+    </tbody>
+</table>

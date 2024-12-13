@@ -1,0 +1,40 @@
+﻿@using VinylShop.Web.Models.Orders
+@model List<OrderModel>
+
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    OrdersViewSettings settings = ViewBag.PageSettings as OrdersViewSettings;
+}
+<div class="admin-header">
+    <h1>Orders</h1>
+    <div class="admin-header-actions">
+
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User</th>
+            <th>Timestamp</th>
+            <th>Total price</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td><a asp-action="UserProfile" asp-route-id="@item.UserId">Profile</a></td>
+                <td>@item.Timestamp</td>
+                <td>@item.TotalPrice грн</td>
+                <td>@item.StatusString</td>
+                <td><a asp-action="OpenOrder" asp-route-id="@item.Id">Open</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<vc:pagination model="@settings.Pagination" />

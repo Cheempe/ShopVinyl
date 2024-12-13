@@ -1,0 +1,18 @@
+﻿@using VinylShop.Web.Models.Product
+@model CreateProductModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<form method="post" enctype="multipart/form-data" asp-action="CreateProductPost">
+    <input asp-for="@Model.Cover" type="file" />
+    <input asp-for="@Model.Name" placeholder="name"/>
+    <input asp-for="@Model.Author" placeholder="author" />
+    <input asp-for="@Model.Year" placeholder="year" />
+    <select asp-for="@Model.GenreId" placeholder="genre" asp-items="ViewBag.Genre"></select>
+    <input asp-for="@Model.RecordLabel" placeholder="record label" />
+    <input asp-for="@Model.Description" placeholder="description" />
+    <input asp-for="@Model.Price" placeholder="price" type="number" min="0" step="any" />
+    <button type="submit">send</button>
+</form>
