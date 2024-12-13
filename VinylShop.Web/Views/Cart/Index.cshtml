@@ -35,15 +35,16 @@
                         <a asp-action="RemoveFromCart" asp-route-productId="@item.Product.Id" class="remove-item">
                             <img src="/images/remove-icon.png" alt="Remove" class="remove-icon" />
                         </a>
+                        <a class="sent-cover-button" asp-action="ClearCustomCover" asp-route-cartItemId="@item.Id">Remove custom cover</a>
+
+                        <form method="post" enctype="multipart/form-data" asp-action="AddCustomCover">
+                            <input class="custom-cover" hidden name="cartItemId" value="@item.Id" />
+                            <input class ="custom-file-input" name="file" type="file" />
+                            <button class="sent-cover-button" type="submit">send</button>
+                        </form>
                     </div>
 
-                    <a asp-action="ClearCustomCover" asp-route-cartItemId="@item.Id">Remove custom cover</a>
-
-                    <form method="post" enctype="multipart/form-data" asp-action="AddCustomCover">
-                        <input hidden name="cartItemId" value="@item.Id" />
-                        <input name="file" type="file" />
-                        <button type="submit">send</button>
-                    </form>
+                    
                 </div>
             }
         </div>

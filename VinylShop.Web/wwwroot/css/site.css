@@ -385,7 +385,6 @@ h3 {
 
 
 
-
 .productPage {
     display: flex;
     align-items: stretch;
@@ -591,6 +590,7 @@ table td {
     align-items: flex-start;
     object-fit: cover;
     gap: 40px;
+    aspect-ratio: 1/1;
 }
 
 .product-info {
@@ -705,6 +705,51 @@ table td {
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.10);
 }
+
+
+.admin-form {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.custom-cover {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.sent-cover-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: ease-in-out 0.1s;
+    text-decoration: none;
+    border-radius: 8px;
+    color: black;
+}
+
+    .sent-cover-button:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: black;
+    }
+
 /*
 .mainContent {
     display: flex;
